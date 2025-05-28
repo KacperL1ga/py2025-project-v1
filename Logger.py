@@ -105,7 +105,6 @@ class Logger:
 
         # Jeśli bufor osiągnął maksymalny rozmiar, zapisz do pliku
         if len(self.buffer) >= self.buffer_size:
-            print("DEBUG: Bufer pełny - zapis do pliku")
             self._flush_buffer()
 
         # Sprawdź czy potrzebna jest rotacja plików
@@ -116,7 +115,7 @@ class Logger:
             start: datetime,
             end: datetime,
             sensor_id: Optional[str] = None
-    ) -> Iterator[Dict]:
+        ) -> Iterator[Dict]:
         """
         Generator odczytujący historyczne dane z logów.
 
