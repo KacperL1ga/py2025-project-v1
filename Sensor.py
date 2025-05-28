@@ -22,7 +22,7 @@ class Sensor:
         self.frequency = frequency
         self.active = True
         self.last_value = None
-        self.callback =[]
+        self.callbacks = []
 
     def register_callback(self, callback):    # Rejestracja funkcji do wywołania po każdym odczycie z sensora
         self.callbacks.append(callback)
@@ -37,6 +37,10 @@ class Sensor:
 
         value = random.uniform(self.min_value, self.max_value)
         self.last_value = value
+
+        for callback in self.callbacks:
+            callback(self.sensor_id, datetime.now(), value, self.unit)
+        
         return value
 
     def calibrate(self, calibration_factor):
