@@ -2,6 +2,7 @@ import datetime
 import random
 import time
 
+
 class Sensor:
     def __init__(self, sensor_id, name, unit, min_value, max_value, frequency=1):
         """
@@ -24,7 +25,7 @@ class Sensor:
         self.last_value = None
         self.callbacks = []
 
-    def register_callback(self, callback):    # Rejestracja funkcji do wywołania po każdym odczycie z sensora
+    def register_callback(self, callback):  # Rejestracja funkcji do wywołania po każdym odczycie z sensora
         self.callbacks.append(callback)
 
     def read_value(self):
@@ -40,7 +41,7 @@ class Sensor:
 
         for callback in self.callbacks:
             callback(self.sensor_id, datetime.now(), value, self.unit)
-        
+
         return value
 
     def calibrate(self, calibration_factor):

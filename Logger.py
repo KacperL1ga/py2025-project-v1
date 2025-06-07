@@ -3,6 +3,7 @@ import json
 import os
 import zipfile
 from datetime import datetime, timedelta
+from idlelib.iomenu import encoding
 from typing import Dict, Iterator, Optional
 import glob
 
@@ -62,7 +63,7 @@ class Logger:
         is_new_file = not os.path.exists(self.current_file_path)
 
         # Otwarcie pliku w trybie dopisywania (append)
-        self.current_file = open(self.current_file_path, 'a', newline='')
+        self.current_file = open(self.current_file_path, 'a', newline='', encoding='utf-8')
         self.writer = csv.writer(self.current_file, delimiter=';')
 
         # Jeśli plik jest nowy, zapisz nagłówek CSV
